@@ -19,3 +19,5 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
 body {
     height: 100vh;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
