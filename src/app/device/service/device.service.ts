@@ -14,7 +14,7 @@ export class DeviceService implements IDeviceService {
     this.devices$.next(allDevices);
   }
 
-  getFieldDevices(): Observable<IDevice[]> {
+  getFieldDevices$(): Observable<IDevice[]> {
     return this
       .devices$
       .pipe(
@@ -24,7 +24,7 @@ export class DeviceService implements IDeviceService {
       );
   }
 
-  getCommandDevice(): Observable<IDevice | undefined> {
+  getCommandDevice$(): Observable<IDevice | undefined> {
     return this
       .devices$
       .pipe(

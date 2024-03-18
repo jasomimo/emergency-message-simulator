@@ -2,7 +2,11 @@
 
 <div class="devices-wrapper">
     <div class="devices-container">
-        <ems-field-device></ems-field-device>
+        @for (fieldDevice of fieldDevices$ | async; track fieldDevice.name) {
+            <ems-field-device [device]="fieldDevice"></ems-field-device>
+        } @empty {
+            There are no field devices.
+        }
     </div>
     
     <div class="devices-container">

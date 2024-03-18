@@ -14,8 +14,8 @@ export interface IDeviceStorageService {
 }
  export interface IDeviceService {
     addFieldDevice(deviceName: string): void;
-    getFieldDevices(): Observable<IDevice[]>;
-    getCommandDevice(): Observable<IDevice | undefined>;
+    getFieldDevices$(): Observable<IDevice[]>;
+    getCommandDevice$(): Observable<IDevice | undefined>;
  }
 
 export interface IDeviceComponent {

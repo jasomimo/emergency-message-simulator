@@ -1,0 +1,20 @@
+<mat-form-field>
+
+    <mat-label>Message</mat-label>
+
+    <textarea 
+        matInput 
+        [(ngModel)]="message"
+        placeholder="e.g. There is an emergency in District 9..."
+    ></textarea>
+
+</mat-form-field>
+
+<button 
+    mat-flat-button 
+    color="primary"
+    (click)="onSend()"
+    [disabled]="!message"
+>
+    Send
+</button>

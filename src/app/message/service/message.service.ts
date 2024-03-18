@@ -15,7 +15,7 @@ export class MessageService implements IMessageService {
     this.messages$.next(messages);
   }
 
-  getMessagesByDevice(deviceName: string): Observable<IMessage[]> {
+  getMessagesByDevice$(deviceName: string): Observable<IMessage[]> {
     return this
       .messages$
       .pipe(

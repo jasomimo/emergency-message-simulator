@@ -8,7 +8,7 @@ export interface IMessage {
 }
 
 export interface IMessageService {
-    getMessagesByDevice(deviceName: string): Observable<IMessage[]>;
+    getMessagesByDevice$(deviceName: string): Observable<IMessage[]>;
     addMessage(message: IMessage): void;
     keywords$: Observable<string[]>;
 }

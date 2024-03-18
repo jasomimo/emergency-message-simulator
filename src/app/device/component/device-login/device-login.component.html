@@ -1,0 +1,24 @@
+@if (!(users$ | async)?.length) {
+    <p>There are no users in the system. Create a new user first.</p>
+} @else {
+    <div class="login-form">
+        <mat-form-field>
+            <mat-label>Login</mat-label>
+            <mat-select [(ngModel)]="selectedUser" required>
+                @for (user of users$ | async; track user.name) {
+                    <mat-option [value]="user">{{ user.name }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        
+        <button 
+            mat-flat-button 
+            color="primary"
+            (click)="onLogin()"
+            [disabled]="!selectedUser"
+        >
+            Login
+            <mat-icon>login</mat-icon>
+        </button>
+    </div>
+}

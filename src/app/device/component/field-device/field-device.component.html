@@ -1,5 +1,38 @@
-<h1>Device 1</h1>
+<mat-card class="device-container">
 
-<h2>User 1</h2>
+    <mat-card-header>
+        <mat-card-title>{{ device.name }}</mat-card-title>
+        <mat-card-subtitle>{{ device.type }} device</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-divider></mat-divider>
 
-<textarea></textarea>
+    <mat-card-content class="content-rapper">
+        @if (!currentUser) {
+            <ems-device-login (userLogin)="onUserLogin($event)"></ems-device-login>
+        } @else {
+            <ems-device-message (sendMessage)="onSendMessage($event)"></ems-device-message>
+            <br>
+            <ems-device-message-log [messages]="(messages$ | async) ?? []"></ems-device-message-log>
+        }
+
+    </mat-card-content>
+
+    @if (currentUser) {
+        <mat-divider></mat-divider>
+
+        <mat-card-actions align="end">
+            <button mat-flat-button (click)="onLogout()">
+                Logout
+                <mat-icon>logout</mat-icon>
+            </button>
+        </mat-card-actions>
+    }
+    
+   
+
+</mat-card>
+
+
+
+
