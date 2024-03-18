@@ -22,7 +22,15 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "strictPropertyInitialization": false,
+    "baseUrl": "src",
+    "paths": {
+      "@ems/device/*": ["app/device/*"],
+      "@ems/message/*": ["app/message/*"],
+      "@ems/user/*": ["app/user/*"],
+      "@ems/shared/*": ["app/shared/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
