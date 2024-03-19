@@ -83,6 +83,12 @@ export class StorageService implements IStorageService{
     this.storage.setItem(key, newValue);
   }
 
+  setItems<T>(key: string, items: T[]): void {
+    let newValue = this.tryStringify(items);
+
+    this.storage.setItem(key, newValue);
+  }
+
   private tryParseArray<T>(value: string | null): T[] | null {
     let parsedValue: T[] | null = null;
 

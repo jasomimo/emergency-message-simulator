@@ -13,6 +13,9 @@ export class MessageService implements IMessageService {
   constructor(private messageStorageService: MessageStorageService) {
     const messages = messageStorageService.getAllMessages();
     this.messages$.next(messages);
+
+    const keywords = messageStorageService.getAllKeywords();
+    this.keywords$.next(keywords);
   }
 
   getMessagesByDevice$(deviceName: string): Observable<IMessage[]> {
@@ -32,5 +35,11 @@ export class MessageService implements IMessageService {
     messages.push(message);
 
     this.messages$.next(messages);
+  }
+
+  updateKeywords(keywords: string[]): void {
+    this.messageStorageService.updateKeywords(keywords);
+
+    this.keywords$.next([...keywords]);
   }
 }

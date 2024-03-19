@@ -1,3 +1,5 @@
+@use '../../../styles/variables';
+
 @mixin hostElement {
     display: block;
     margin: 10px;
@@ -19,6 +21,13 @@ mat-card-content {
 
 .device-container {
     width: 100%;
+
+    mat-card-content {
+        .section:not(:last-child) {
+            padding: 20px 0;
+            border-bottom: variables.$border;
+        }
+    }
 
     ems-device-message {
         margin-bottom: 20px;

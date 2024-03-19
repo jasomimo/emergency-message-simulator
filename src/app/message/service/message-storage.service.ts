@@ -8,6 +8,7 @@ import { StorageService } from '@ems/shared/service/storage.service';
 export class MessageStorageService implements IMessageStorageService {
 
   private readonly messagesKey = 'ems.messages';
+  private readonly keywordsKey = 'ems.keywords';
 
   constructor(private storageService: StorageService) { }
 
@@ -17,5 +18,13 @@ export class MessageStorageService implements IMessageStorageService {
 
   createMessage(message: IMessage): void {
     this.storageService.createItem(this.messagesKey, message);
+  }
+
+  updateKeywords(keywords: string[]): void {
+    this.storageService.setItems(this.keywordsKey, keywords);
+  }
+
+  getAllKeywords(): string[] {
+    return this.storageService.getAllItems<string>(this.keywordsKey);
   }
 }

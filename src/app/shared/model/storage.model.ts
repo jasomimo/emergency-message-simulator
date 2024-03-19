@@ -5,4 +5,5 @@ export interface IStorageService {
     createItem<T>(key: string, item: T): void;
     updateItem<T>(key: string, item: T, findFn: FindFn<T>): void;
     deleteItem<T>(key: string, findFn: FindFn<T>): void;
+    setItems<T>(key: string, items: T[]): void;
 }
