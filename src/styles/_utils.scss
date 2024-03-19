@@ -1,3 +1,5 @@
+@use './variables';
+
 .break-word {
     word-break: break-word;
 }
@@ -6,4 +8,8 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.border-top {
+    border-top: variables.$border;
 }

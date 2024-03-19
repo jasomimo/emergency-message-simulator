@@ -1,1 +1,40 @@
-<p>command-device works!</p>
+<mat-card class="device-container">
+
+    <mat-card-header class="break-word">
+        <mat-card-title>{{ device.name }}</mat-card-title>
+        <mat-card-subtitle>{{ device.type }} device</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-divider></mat-divider>
+
+    <mat-card-content class="content-rapper">
+        @if (!currentUser) {
+            <ems-device-login (userLogin)="onUserLogin($event)"></ems-device-login>
+        } @else {
+            <ems-device-message 
+                (sendMessage)="onSendMessage($event)"
+            ></ems-device-message>
+
+            <ems-device-message-log 
+                [messages]="(messages$ | async) ?? []"
+            ></ems-device-message-log>
+        }
+
+    </mat-card-content>
+
+    @if (currentUser) {
+        <mat-divider></mat-divider>
+
+        <mat-card-actions align="end">
+            <button mat-flat-button (click)="onUserLogout()">
+                Logout
+                <mat-icon>logout</mat-icon>
+            </button>
+        </mat-card-actions>
+    }
+
+</mat-card>
+
+
+
+

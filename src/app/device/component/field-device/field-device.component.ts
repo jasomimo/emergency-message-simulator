@@ -29,7 +29,10 @@ import { CommonModule } from '@angular/common';
     DeviceMessageLogComponent
   ],
   templateUrl: './field-device.component.html',
-  styleUrl: './field-device.component.scss'
+  styleUrls: [
+    './field-device.component.scss',
+    '../../shared/_device.scss'
+  ]
 })
 export class FieldDeviceComponent implements IDeviceComponent, OnInit {
 
@@ -37,6 +40,13 @@ export class FieldDeviceComponent implements IDeviceComponent, OnInit {
     private deviceLoginService: DeviceLoginService,
     private messageService: MessageService
   ) {}
+
+  @Input({required: true})
+  device: IDevice;
+
+  currentUser: IUser | null;
+
+  messages$: Observable<IMessage[]>;
 
   ngOnInit(): void {
     this.deviceLoginService
@@ -47,20 +57,13 @@ export class FieldDeviceComponent implements IDeviceComponent, OnInit {
     this.messages$ = this.messageService.getMessagesByDevice$(this.device.name);
   }
 
-  @Input({required: true})
-  device: IDevice;
-
-  currentUser: IUser | null;
-
-  messages$: Observable<IMessage[]>;
-
   onUserLogin(user: IUser): void {
     this.deviceLoginService.login(this.device.name, user.name);
 
     this.currentUser = user;
   };
 
-  onLogout(): void {
+  onUserLogout(): void {
     this.deviceLoginService.logout(this.device.name);
     this.currentUser = null;
   }

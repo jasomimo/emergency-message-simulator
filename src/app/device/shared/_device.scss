@@ -1,0 +1,19 @@
+@mixin hostElement {
+    display: block;
+    margin: 10px;
+    
+    width: 300px;
+    min-width: 300px;
+}
+
+.device-container {
+    width: 100%;
+
+    mat-divider {
+        margin: 20px 0;
+    }
+
+    ems-device-message {
+        margin-bottom: 20px;
+    }
+}

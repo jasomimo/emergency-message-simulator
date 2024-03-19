@@ -7,9 +7,9 @@
         <p>There are no field devices.</p>
     }
 </div>
-<div class="devices-container">
-    @if(commandDevice$ | async) {
-
+<div class="devices-container border-top">
+    @if(commandDevice$ | async; as commandDevice) {
+        <ems-command-device [device]="commandDevice"></ems-command-device>
     } @else {
         <p>There is no command device.</p>
     }

@@ -1,3 +1,5 @@
+import { IMessage } from "@ems/message/model/message.model";
+import { IUser } from "@ems/user/model/user.model";
 import { Observable } from "rxjs";
 
 export type DeviceType = 'field' | 'command';
@@ -19,7 +21,13 @@ export interface IDeviceStorageService {
  }
 
 export interface IDeviceComponent {
+    device: IDevice;
+    currentUser: IUser | null;
+    messages$: Observable<IMessage[]>;
+    onUserLogin(user: IUser): void;
+    onUserLogout(): void;
 
+    onSendMessage(message: string): void;
 }
 
 export interface IDeviceLoginService {

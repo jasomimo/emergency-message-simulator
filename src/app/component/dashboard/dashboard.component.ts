@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IDevice } from '@ems/device/model/device.model';
 import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { CommandDeviceComponent } from '@ems/device/component/command-device/command-device.component';
 
 
 
@@ -14,6 +15,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
   imports: [
     CommonModule,
     FieldDeviceComponent, 
+    CommandDeviceComponent, 
     ToolbarComponent,
   ],
   templateUrl: './dashboard.component.html',
