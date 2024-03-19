@@ -1,3 +1,6 @@
+@use './utils';
+@use './scrollbar/scrollbar';
+
 /* You can add global styles to this file, and also import other style files */
 // CSS reset
 html {
@@ -14,10 +17,8 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
     margin: 0;
     padding: 0;
     font-weight: normal;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-body {
-    height: 100vh;
-}
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

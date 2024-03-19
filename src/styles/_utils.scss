@@ -1,0 +1,9 @@
+.break-word {
+    word-break: break-word;
+}
+
+.text-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

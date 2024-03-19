@@ -1,21 +1,9 @@
 :host {
-    display: flex;
+    display: block;
+    margin: 10px;
     
+    width: 300px;
     min-width: 300px;
-    max-width: 600px;
-
-    min-height: 300px;
-    max-height: 600px;
-
-    padding: 10px;
-
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
-
-
-    // border: 1px solid #aaa;
-    // border-radius: 10px;
 }
 
 .device-container {
@@ -23,5 +11,9 @@
 
     mat-divider {
         margin: 20px 0;
+    }
+
+    ems-device-message {
+        margin-bottom: 20px;
     }
 }

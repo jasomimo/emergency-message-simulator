@@ -1,6 +1,6 @@
 <mat-card class="device-container">
 
-    <mat-card-header>
+    <mat-card-header class="break-word">
         <mat-card-title>{{ device.name }}</mat-card-title>
         <mat-card-subtitle>{{ device.type }} device</mat-card-subtitle>
     </mat-card-header>
@@ -11,9 +11,13 @@
         @if (!currentUser) {
             <ems-device-login (userLogin)="onUserLogin($event)"></ems-device-login>
         } @else {
-            <ems-device-message (sendMessage)="onSendMessage($event)"></ems-device-message>
-            <br>
-            <ems-device-message-log [messages]="(messages$ | async) ?? []"></ems-device-message-log>
+            <ems-device-message 
+                (sendMessage)="onSendMessage($event)"
+            ></ems-device-message>
+
+            <ems-device-message-log 
+                [messages]="(messages$ | async) ?? []"
+            ></ems-device-message-log>
         }
 
     </mat-card-content>

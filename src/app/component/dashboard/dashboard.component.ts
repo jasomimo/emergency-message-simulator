@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FieldDeviceComponent } from '@ems/device/component/field-device/field-device.component';
-import { PanelComponent } from '../panel/panel.component';
 import { DeviceService } from '@ems/device/service/device.service';
 import { Observable } from 'rxjs';
 import { IDevice } from '@ems/device/model/device.model';
 import { CommonModule } from '@angular/common';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
+
+
 
 @Component({
   selector: 'ems-dashboard',
@@ -12,18 +14,20 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     FieldDeviceComponent, 
-    PanelComponent
+    ToolbarComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
   fieldDevices$: Observable<IDevice[]>;
+  commandDevice$: Observable<IDevice | undefined>;
 
   constructor(private deviceService: DeviceService) {}
   
   ngOnInit(): void {
     this.fieldDevices$ = this.deviceService.getFieldDevices$();
+    this.commandDevice$ = this.deviceService.getCommandDevice$();
   }
 
 }

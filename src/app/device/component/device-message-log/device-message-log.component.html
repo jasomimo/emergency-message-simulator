@@ -1,5 +1,8 @@
 @for (message of messages; track $index) {
     <p>
-        {{ message.userName }} {{'@'}} {{ message.deviceName }} {{'@'}} {{ message.timestamp | utcDate }}: {{ message.message }}
+        <strong>
+            {{ message.userName }}{{'@'}}{{ message.deviceName }}{{'@'}}{{ message.timestamp | utcDate }}:
+        </strong>
+        {{ message.message }}
     </p>
 }

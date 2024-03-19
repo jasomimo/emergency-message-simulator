@@ -1,0 +1,19 @@
+$mat-toolbar-padding: 16px;
+$actions-container-width: 100px;
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    .title {
+        flex: 1 1 auto;
+        max-width: calc(100vw - (2 * $mat-toolbar-padding + $actions-container-width));
+    }
+
+    .action-container {
+        flex: 0 0 $actions-container-width;
+    }
+}
