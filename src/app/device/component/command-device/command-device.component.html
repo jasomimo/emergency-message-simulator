@@ -1,8 +1,16 @@
 <mat-card class="device-container">
 
     <mat-card-header class="break-word">
-        <mat-card-title>{{ device.name }}</mat-card-title>
+
+        <mat-card-title>
+            {{ device.name }}
+            @if(currentUser) {
+                - {{ currentUser.name }}
+            }
+        </mat-card-title>
+
         <mat-card-subtitle>{{ device.type }} device</mat-card-subtitle>
+        
     </mat-card-header>
     
     <mat-divider></mat-divider>
