@@ -13,9 +13,10 @@ ems-toolbar {
 }
 
 .devices-container {
-    flex: 1 1 auto;
+    flex: 0 0 calc((100vh - 64px) / 2);
 
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     
     overflow: auto;

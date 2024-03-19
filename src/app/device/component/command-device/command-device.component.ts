@@ -13,6 +13,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { DeviceMessageComponent } from '../device-message/device-message.component';
 import { DeviceMessageLogComponent } from '../device-message-log/device-message-log.component';
 import { CommonModule } from '@angular/common';
+import { DeviceUserListComponent } from '../device-user-list/device-user-list.component';
 
 @Component({
   selector: 'ems-command-device',
@@ -25,7 +26,8 @@ import { CommonModule } from '@angular/common';
     MatCardModule,
     MatDividerModule,
     DeviceMessageComponent,
-    DeviceMessageLogComponent
+    DeviceMessageLogComponent,
+    DeviceUserListComponent
   ],
   templateUrl: './command-device.component.html',
   styleUrls: [

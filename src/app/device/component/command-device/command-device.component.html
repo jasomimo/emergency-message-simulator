@@ -11,6 +11,10 @@
         @if (!currentUser) {
             <ems-device-login (userLogin)="onUserLogin($event)"></ems-device-login>
         } @else {
+            <ems-device-user-list 
+                class="user-list"
+            ></ems-device-user-list>
+
             <ems-device-message 
                 (sendMessage)="onSendMessage($event)"
             ></ems-device-message>

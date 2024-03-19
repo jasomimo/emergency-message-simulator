@@ -3,3 +3,7 @@
 :host {
     @include device.hostElement;
 }
+
+mat-card-header {
+    background-color: silver;
+}

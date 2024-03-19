@@ -3,7 +3,7 @@ import { IDevice, IDeviceComponent } from '../../model/device.model';
 import { DeviceLoginComponent } from '../device-login/device-login.component';
 import { IUser } from '@ems/user/model/user.model';
 import { DeviceLoginService } from '@ems/device/service/device-login.service';
-import { Observable, take } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -13,6 +13,7 @@ import { MessageService } from '@ems/message/service/message.service';
 import { DeviceMessageLogComponent } from '../device-message-log/device-message-log.component';
 import { IMessage } from '@ems/message/model/message.model';
 import { CommonModule } from '@angular/common';
+import { UserService } from '@ems/user/service/user.service';
 
 
 @Component({
@@ -38,7 +39,8 @@ export class FieldDeviceComponent implements IDeviceComponent, OnInit {
 
   constructor(
     private deviceLoginService: DeviceLoginService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private userService: UserService,
   ) {}
 
   @Input({required: true})
@@ -48,6 +50,8 @@ export class FieldDeviceComponent implements IDeviceComponent, OnInit {
 
   messages$: Observable<IMessage[]>;
 
+  currentUserMuted$: Observable<boolean>;
+
   ngOnInit(): void {
     this.deviceLoginService
       .getLoggedInUser$(this.device.name)
@@ -55,6 +59,20 @@ export class FieldDeviceComponent implements IDeviceComponent, OnInit {
       .subscribe(loggedUser => this.currentUser = loggedUser);
     
     this.messages$ = this.messageService.getMessagesByDevice$(this.device.name);
+
+    this.currentUserMuted$ = this.userService
+      .mutedUsers$
+      .pipe(
+        map(mutedUsers => {
+          if (!this.currentUser) {
+            return false;
+          }
+          const currentUserName = this.currentUser.name;
+          const mutedUser = mutedUsers.find(user => user.name === currentUserName);
+
+          return !!mutedUser;
+        })
+      )
   }
 
   onUserLogin(user: IUser): void {
@@ -70,7 +88,7 @@ export class FieldDeviceComponent implements IDeviceComponent, OnInit {
 
   onSendMessage(message: string): void {
     if (!this.currentUser) {
-      throw Error('Cannot send a message, there is not user logged in.');
+      throw Error('Cannot send a message, there is no user logged in.');
     }
 
     this.messageService.addMessage({

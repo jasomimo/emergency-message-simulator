@@ -12,6 +12,7 @@
             <ems-device-login (userLogin)="onUserLogin($event)"></ems-device-login>
         } @else {
             <ems-device-message 
+                [muteSendingMessage]="!!(currentUserMuted$ | async)"
                 (sendMessage)="onSendMessage($event)"
             ></ems-device-message>
 

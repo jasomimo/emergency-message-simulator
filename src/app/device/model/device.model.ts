@@ -45,3 +45,9 @@ export interface IDeviceSessionStorageService {
     deleteSession(deviceName: string): void;
     getAllSessions(): IDeviceSession[];
 }
+
+export interface IDeviceMutedUser {
+    deviceName: string;
+    user?: IUser;
+    isUserMuted?: boolean;
+}

@@ -1,0 +1,18 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.login-session {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom:10px;
+    padding-left: 10px;
+}
