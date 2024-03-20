@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { IDevice, IDeviceMutedUser } from '@ems/device/model/device.model';
+import { IDeviceMutedUser } from '@ems/device/model/device.model';
 import { DeviceLoginService } from '@ems/device/service/device-login.service';
 import { DeviceService } from '@ems/device/service/device.service';
-import { IUser } from '@ems/user/model/user.model';
 import { UserService } from '@ems/user/service/user.service';
-import { Observable, combineLatest, map, withLatestFrom } from 'rxjs';
+import { Observable, combineLatest, map } from 'rxjs';
 
 
 
@@ -49,7 +48,10 @@ export class DeviceUserListComponent implements OnInit {
 
           const userName = loginSessions.get(device.name);
           const user = users.find(user => user.name === userName);
-          const mutedUser = mutedUsers.find(user => user.name === userName);
+
+          const mutedUser = mutedUsers.find(
+            muted => muted.deviceName === device.name && muted.userName === userName
+          );
 
           list.push({
             deviceName: device.name,
@@ -63,11 +65,11 @@ export class DeviceUserListComponent implements OnInit {
     );
   }
 
-  onMuteUser(user: IUser): void {
-    this.userService.muteUser(user);
+  onMuteUser(deviceName: string, userName: string): void {
+    this.userService.muteUser(deviceName, userName);
   }
 
-  onUnmuteUser(user: IUser): void {
-    this.userService.unMuteUser(user);
+  onUnmuteUser(deviceName: string, userName: string): void {
+    this.userService.unMuteUser(deviceName, userName);
   }
 }

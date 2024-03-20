@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserStorageService } from './user-storage.service';
-import { IUser, IUserService } from '../model/user.model';
+import { IUser, IUserDevice, IUserService } from '../model/user.model';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UserService implements IUserService {
   users$ = new BehaviorSubject<IUser[]>([]);
-  mutedUsers$ = new BehaviorSubject<IUser[]>([]);
+  mutedUsers$ = new BehaviorSubject<IUserDevice[]>([]);
 
   constructor(private userStorageService: UserStorageService) {
     const users = userStorageService.getAllUsers();
@@ -24,16 +24,21 @@ export class UserService implements IUserService {
     this.users$.next(users);
   }
 
-  muteUser(user: IUser): void {
+  muteUser(deviceName: string, userName: string): void {
     const mutedUsers = [...this.mutedUsers$.value];
-    mutedUsers.push(user);
+    mutedUsers.push({
+      deviceName,
+      userName
+    });
 
     this.mutedUsers$.next(mutedUsers);
   }
 
-  unMuteUser(user: IUser): void {
+  unMuteUser(deviceName: string, userName: string): void {
     const mutedUsers = [...this.mutedUsers$.value];
-    const index = mutedUsers.findIndex(u => u.name === user.name);
+    const index = mutedUsers.findIndex(
+      muted => muted.deviceName === deviceName && muted.userName === userName
+    );
 
     if (index === -1) {
       return;

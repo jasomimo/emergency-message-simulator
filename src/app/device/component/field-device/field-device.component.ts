@@ -68,7 +68,9 @@ export class FieldDeviceComponent implements IDeviceComponent, OnInit {
             return false;
           }
           const currentUserName = this.currentUser.name;
-          const mutedUser = mutedUsers.find(user => user.name === currentUserName);
+          const mutedUser = mutedUsers.find(
+            muted => muted.deviceName === this.device.name && muted.userName === currentUserName
+          );
 
           return !!mutedUser;
         })
