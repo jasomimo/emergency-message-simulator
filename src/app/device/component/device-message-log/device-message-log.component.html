@@ -1,12 +1,7 @@
 <span class="section-title">Message log</span>
 
 <div class="log-container">
-    @for (message of messages; track $index) {
-        <p>
-            <strong>
-                {{ message.userName }}{{'@'}}{{ message.deviceName }}{{'@'}}{{ message.timestamp | utcDate }}:
-            </strong>
-            {{ message.message }}
-        </p>
+    @for (message of messages; track message) {
+        <ems-message [message]="message"></ems-message>
     }
 </div>

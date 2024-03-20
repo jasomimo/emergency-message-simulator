@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { MessageComponent } from '@ems/message/component/message/message.component';
 import { IMessage } from '@ems/message/model/message.model';
 import { UtcDatePipe } from '@ems/shared/pipe/utc-date.pipe';
 
@@ -6,7 +7,8 @@ import { UtcDatePipe } from '@ems/shared/pipe/utc-date.pipe';
   selector: 'ems-device-message-log',
   standalone: true,
   imports: [
-    UtcDatePipe
+    UtcDatePipe,
+    MessageComponent
   ],
   templateUrl: './device-message-log.component.html',
   styleUrl: './device-message-log.component.scss'

@@ -6,6 +6,7 @@ import { IDevice } from '@ems/device/model/device.model';
 import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { CommandDeviceComponent } from '@ems/device/component/command-device/command-device.component';
+import { AlertMessageBoxComponent } from '@ems/message/component/alert-message-box/alert-message-box.component';
 
 
 
@@ -17,6 +18,7 @@ import { CommandDeviceComponent } from '@ems/device/component/command-device/com
     FieldDeviceComponent, 
     CommandDeviceComponent, 
     ToolbarComponent,
+    AlertMessageBoxComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'

@@ -12,7 +12,7 @@ export class UtcDatePipe implements PipeTransform {
     }
 
     if (typeof value !== 'number') {
-      throw Error(`Expected timestamp, but got '${typeof value}'`);
+      throw Error(`Expected timestamp (number), but got '${typeof value}'`);
     }
     return new Date(value).toISOString();
   }

@@ -1,5 +1,6 @@
 @use '../../../styles/variables';
 
+// TODO: extract to top level mixin and use in alert-message-log component
 @mixin hostElement {
     display: block;
     margin: 10px;

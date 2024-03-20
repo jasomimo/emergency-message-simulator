@@ -10,6 +10,7 @@
 <div class="devices-container border-top">
     @if(commandDevice$ | async; as commandDevice) {
         <ems-command-device [device]="commandDevice"></ems-command-device>
+        <ems-alert-message-box></ems-alert-message-box>
     } @else {
         <p>There is no command device.</p>
     }

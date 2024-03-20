@@ -1,0 +1,19 @@
+<mat-card>
+
+    <mat-card-header class="break-word">
+        <mat-card-title>Alert Messages</mat-card-title>
+    </mat-card-header>
+    
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+
+        <div class="section log-container">
+            @for(alertMessage of alertMessages$ | async; track alertMessage) {
+                <ems-alert-message [alertMessage]="alertMessage"></ems-alert-message>
+            }
+        </div>
+
+    </mat-card-content>
+
+</mat-card>

@@ -7,6 +7,10 @@ export interface IMessage {
     timestamp: number;
 }
 
+export interface IAlertMessage extends IMessage {
+    keywords: string[];
+}
+
 export interface IMessageService {
     getMessagesByDevice$(deviceName: string): Observable<IMessage[]>;
     addMessage(message: IMessage): void;

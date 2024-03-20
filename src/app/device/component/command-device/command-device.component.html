@@ -15,7 +15,7 @@
     
     <mat-divider></mat-divider>
 
-    <mat-card-content class="content-wrapper">
+    <mat-card-content>
         @if (!currentUser) {
             <ems-device-login (userLogin)="onUserLogin($event)"></ems-device-login>
         } @else {
