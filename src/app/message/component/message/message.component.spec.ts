@@ -1,23 +1,49 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MessageComponent } from './message.component';
+import { IMessage } from '@ems/message/model/message.model';
+import { Component, ViewChild } from '@angular/core';
+
+@Component({
+  selector: 'ems-mock-host',
+  standalone: true,
+  imports: [
+    MessageComponent
+  ],
+  template: `<ems-message [message]="mockMessage"></ems-message>`
+})
+export class MockHostComponent {
+  mockMessage: IMessage = {
+    deviceName: 'mock device',
+    message: 'mock message',
+    timestamp: 123,
+    userName: 'mock suer'
+  };
+
+  @ViewChild(MessageComponent)
+  component: MessageComponent;
+}
 
 describe('MessageComponent', () => {
+  let mockHostComponent: MockHostComponent;
+  let mockHostFixture: ComponentFixture<MockHostComponent>;
+  
   let component: MessageComponent;
-  let fixture: ComponentFixture<MessageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MessageComponent]
+      imports: [MockHostComponent, MessageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(MessageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    mockHostFixture = TestBed.createComponent(MockHostComponent);
+    mockHostComponent = mockHostFixture.componentInstance;
+    mockHostFixture.detectChanges();
+
+    component = mockHostComponent.component;
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(mockHostComponent).toBeTruthy();
   });
 });

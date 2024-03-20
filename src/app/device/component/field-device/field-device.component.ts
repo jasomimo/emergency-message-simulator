@@ -53,6 +53,10 @@ export class FieldDeviceComponent implements IDeviceComponent, OnInit {
   currentUserMuted$: Observable<boolean>;
 
   ngOnInit(): void {
+    if (this.device.type !== 'field') {
+      throw Error(`Was expecting field device, but got '${this.device.type}'.`);
+    }
+
     this.deviceLoginService
       .getLoggedInUser$(this.device.name)
       .pipe(take(1))

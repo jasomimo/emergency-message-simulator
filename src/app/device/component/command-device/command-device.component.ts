@@ -52,6 +52,10 @@ export class CommandDeviceComponent implements IDeviceComponent, OnInit {
   messages$: Observable<IMessage[]>;
 
   ngOnInit(): void {
+    if (this.device.type !== 'command') {
+      throw Error(`Was expecting command device, but got '${this.device.type}'.`);
+    }
+
     this.deviceLoginService
       .getLoggedInUser$(this.device.name)
       .pipe(take(1))
