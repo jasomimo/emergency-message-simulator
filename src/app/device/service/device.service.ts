@@ -11,6 +11,9 @@ export class DeviceService implements IDeviceService {
 
     constructor(private deviceStorageService: DeviceStorageService) {
         const allDevices = deviceStorageService.getAllDevices();
+
+        this.addCommandDeviceIfNotExists(allDevices);
+
         this.devices$.next(allDevices);
     }
 
@@ -34,5 +37,22 @@ export class DeviceService implements IDeviceService {
         allDevices.push(device);
 
         this.devices$.next(allDevices);
+    }
+
+    private addCommandDeviceIfNotExists(initialDevices: IDevice[]): void {
+        let commandDevice: IDevice | undefined = initialDevices.find(d => d.type === 'command');
+
+        if (commandDevice) {
+            return;
+        }
+
+        commandDevice = {
+            name: 'Operator',
+            type: 'command'
+        };
+
+        this.deviceStorageService.createDevice(commandDevice);
+
+        initialDevices.push(commandDevice);
     }
 }

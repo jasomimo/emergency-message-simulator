@@ -14,7 +14,9 @@
         @for (fieldDevice of fieldDevices$ | async; track fieldDevice.name) {
             <ems-field-device [device]="fieldDevice"></ems-field-device>
         } @empty {
-            <p>There are no field devices.</p>
+            <div class="empty-message">
+                There are no Field devices, create new Field device in the toolbar.
+            </div>
         }
     </div>
 </div>

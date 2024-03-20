@@ -16,6 +16,8 @@ $column-layout-width: variables.$device-width * 2 + 100px;
 .device-wrapper {
     display: flex;
 
+    height: 100%;
+
     overflow: hidden;
 }
 
@@ -29,6 +31,7 @@ $column-layout-width: variables.$device-width * 2 + 100px;
         }
 
         .field-device {
+            flex-basis: calc(100vh / 2);
             justify-content: center;
         }
     }
@@ -38,25 +41,30 @@ $column-layout-width: variables.$device-width * 2 + 100px;
     display: flex;
     flex-wrap: wrap;
 
+    min-width: variables.$min-screen-size;
+
     overflow: auto;
 }
 
 .command-device {
     flex: 0 1 $command-container-width;
-    min-width: variables.$min-screen-size;
 
     justify-content: center;
 
     border-right: variables.$border;
-
     overflow: auto;
 }
 
 .field-device {
-    flex: 1 1 auto;
-    min-width: variables.$min-screen-size;
+    flex: 1 1 calc(100vw - $command-container-width);
 
     justify-content: flex-start;
 
     overflow: auto;
+
+    .empty-message {
+        align-self: center;
+        text-align: center;
+        width: 100%;
+    }
 }

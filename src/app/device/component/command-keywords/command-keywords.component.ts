@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MessageService } from '@ems/message/service/message.service';
 import { take } from 'rxjs';
 
@@ -14,7 +15,10 @@ import { take } from 'rxjs';
     styleUrl: './command-keywords.component.scss',
 })
 export class CommandKeywordsComponent implements OnInit {
-    constructor(private messageService: MessageService) {}
+    constructor(
+      private messageService: MessageService,
+      private snackBar: MatSnackBar
+    ) {}
 
     ngOnInit(): void {
         this.messageService.keywords$.pipe(take(1)).subscribe((keywords) => {
@@ -32,5 +36,6 @@ export class CommandKeywordsComponent implements OnInit {
         const keywords = this.keywordsValue.split(',').map((keyword) => keyword.trim());
 
         this.messageService.updateKeywords(keywords);
+        this.snackBar.open('Keywords updated', 'Close');
     }
 }
