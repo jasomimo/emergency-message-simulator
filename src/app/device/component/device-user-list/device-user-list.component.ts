@@ -69,7 +69,7 @@ export class DeviceUserListComponent implements OnInit {
     this.userService.muteUser(deviceName, userName);
   }
 
-  onUnmuteUser(deviceName: string, userName: string): void {
+  onUnMuteUser(deviceName: string, userName: string): void {
     this.userService.unMuteUser(deviceName, userName);
   }
 }
