@@ -3,18 +3,17 @@ import { IUser, IUserStorageService } from '../model/user.model';
 import { StorageService } from '@ems/shared/service/storage.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class UserStorageService implements IUserStorageService {
+    private readonly usersKey = 'ems.users';
 
-  private readonly usersKey = 'ems.users';
+    constructor(private storageService: StorageService) {}
 
-  constructor(private storageService: StorageService) {}
-
-  getAllUsers(): IUser[] {
-    return this.storageService.getAllItems<IUser>(this.usersKey);
-  }
-  createUser(user: IUser): void {
-    this.storageService.createItem(this.usersKey, user);
-  }  
+    getAllUsers(): IUser[] {
+        return this.storageService.getAllItems<IUser>(this.usersKey);
+    }
+    createUser(user: IUser): void {
+        this.storageService.createItem(this.usersKey, user);
+    }
 }

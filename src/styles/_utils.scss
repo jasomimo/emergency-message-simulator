@@ -31,7 +31,8 @@
     border: variables.$border;
     border-radius: 3px;
 
-    & > ems-message, & > ems-alert-message {
+    & > ems-message,
+    & > ems-alert-message {
         display: inline-block;
         margin-bottom: 16px;
     }

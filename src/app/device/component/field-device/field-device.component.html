@@ -1,36 +1,29 @@
 <mat-card class="device-container">
-
     <mat-card-header class="break-word">
-
         <mat-card-title>
             {{ device.name }}
-            @if(currentUser) {
+            @if (currentUser) {
                 - {{ currentUser.name }}
             }
         </mat-card-title>
 
         <mat-card-subtitle>{{ device.type }} device</mat-card-subtitle>
-
     </mat-card-header>
-    
+
     <mat-divider></mat-divider>
 
     <mat-card-content>
         @if (!currentUser) {
             <ems-device-login (userLogin)="onUserLogin($event)"></ems-device-login>
         } @else {
-            <ems-device-message 
+            <ems-device-message
                 [muteSendingMessage]="!!(currentUserMuted$ | async)"
                 (sendMessage)="onSendMessage($event)"
                 class="section"
             ></ems-device-message>
 
-            <ems-device-message-log 
-                [messages]="(messages$ | async) ?? []"
-                class="section"
-            ></ems-device-message-log>
+            <ems-device-message-log [messages]="(messages$ | async) ?? []" class="section"></ems-device-message-log>
         }
-
     </mat-card-content>
 
     @if (currentUser) {
@@ -43,9 +36,4 @@
             </button>
         </mat-card-actions>
     }
-
 </mat-card>
-
-
-
-

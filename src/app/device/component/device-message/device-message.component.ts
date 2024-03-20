@@ -5,32 +5,27 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'ems-device-message',
-  standalone: true,
-  imports: [
-    FormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule
-  ],
-  templateUrl: './device-message.component.html',
-  styleUrl: './device-message.component.scss'
+    selector: 'ems-device-message',
+    standalone: true,
+    imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule],
+    templateUrl: './device-message.component.html',
+    styleUrl: './device-message.component.scss',
 })
 export class DeviceMessageComponent {
-  message: string;
+    message: string;
 
-  @Input()
-  muteSendingMessage: boolean = false;
+    @Input()
+    muteSendingMessage: boolean = false;
 
-  @Output()
-  sendMessage = new EventEmitter<string>();
+    @Output()
+    sendMessage = new EventEmitter<string>();
 
-  onSend(): void {
-    if (!this.message) {
-      return;
+    onSend(): void {
+        if (!this.message) {
+            return;
+        }
+
+        this.sendMessage.next(this.message);
+        this.message = '';
     }
-
-    this.sendMessage.next(this.message);
-    this.message = '';
-  }
 }

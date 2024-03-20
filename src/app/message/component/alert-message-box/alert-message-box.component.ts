@@ -8,23 +8,18 @@ import { CommonModule } from '@angular/common';
 import { AlertMessageComponent } from '../alert-message/alert-message.component';
 
 @Component({
-  selector: 'ems-alert-message-box',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatDividerModule,
-    AlertMessageComponent
-  ],
-  templateUrl: './alert-message-box.component.html',
-  styleUrl: './alert-message-box.component.scss'
+    selector: 'ems-alert-message-box',
+    standalone: true,
+    imports: [CommonModule, MatCardModule, MatDividerModule, AlertMessageComponent],
+    templateUrl: './alert-message-box.component.html',
+    styleUrl: './alert-message-box.component.scss',
 })
-export class AlertMessageBoxComponent implements OnInit{
-  alertMessages$: Observable<IAlertMessage[]>;
+export class AlertMessageBoxComponent implements OnInit {
+    alertMessages$: Observable<IAlertMessage[]>;
 
-  constructor(private messageService: MessageService) {}
+    constructor(private messageService: MessageService) {}
 
-  ngOnInit(): void {
-    this.alertMessages$ = this.messageService.alertMessages$;
-  }
+    ngOnInit(): void {
+        this.alertMessages$ = this.messageService.alertMessages$;
+    }
 }

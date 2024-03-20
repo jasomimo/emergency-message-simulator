@@ -4,32 +4,29 @@ import { CommandKeywordsComponent } from './command-keywords.component';
 import { provideMock } from '@ems/shared/testing/utils';
 import { MessageService } from '@ems/message/service/message.service';
 import { BehaviorSubject } from 'rxjs';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('CommandKeywordsComponent', () => {
-  let component: CommandKeywordsComponent;
-  let fixture: ComponentFixture<CommandKeywordsComponent>;
+    let component: CommandKeywordsComponent;
+    let fixture: ComponentFixture<CommandKeywordsComponent>;
 
-  let mockMessageService: MessageService;
+    let mockMessageService: MessageService;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [CommandKeywordsComponent, NoopAnimationsModule],
-      providers: [
-        provideMock(MessageService)
-      ]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [CommandKeywordsComponent, NoopAnimationsModule],
+            providers: [provideMock(MessageService)],
+        }).compileComponents();
 
-    mockMessageService = TestBed.inject(MessageService);
-    mockMessageService.keywords$ = new BehaviorSubject<string[]>([]);
-    
-    fixture = TestBed.createComponent(CommandKeywordsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        mockMessageService = TestBed.inject(MessageService);
+        mockMessageService.keywords$ = new BehaviorSubject<string[]>([]);
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+        fixture = TestBed.createComponent(CommandKeywordsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

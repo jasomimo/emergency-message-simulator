@@ -1,25 +1,17 @@
 <span class="section-title">Login Sessions</span>
 
-@for(item of deviceUserList$ | async; track item) {
+@for (item of deviceUserList$ | async; track item) {
     <div class="login-session">
-        {{item.deviceName}}
-        @if(item.user) {
-            {{'-'}} {{item.user.name}}
+        {{ item.deviceName }}
+        @if (item.user) {
+            {{ '-' }} {{ item.user.name }}
 
-            @if(item.isUserMuted) {
-                <button 
-                    mat-flat-button 
-                    color="warn"
-                    (click)="onUnMuteUser(item.deviceName, item.user.name)"
-                >
+            @if (item.isUserMuted) {
+                <button mat-flat-button color="warn" (click)="onUnMuteUser(item.deviceName, item.user.name)">
                     Unmute user
                 </button>
             } @else {
-                <button 
-                    mat-flat-button 
-                    color="warn"
-                    (click)="onMuteUser(item.deviceName, item.user.name)"
-                >
+                <button mat-flat-button color="warn" (click)="onMuteUser(item.deviceName, item.user.name)">
                     Mute user
                 </button>
             }

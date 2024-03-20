@@ -10,38 +10,30 @@ import { UserService } from '@ems/user/service/user.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'ems-device-login',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
-  templateUrl: './device-login.component.html',
-  styleUrl: './device-login.component.scss'
+    selector: 'ems-device-login',
+    standalone: true,
+    imports: [CommonModule, FormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatIconModule],
+    templateUrl: './device-login.component.html',
+    styleUrl: './device-login.component.scss',
 })
 export class DeviceLoginComponent implements OnInit {
+    @Output()
+    userLogin = new EventEmitter<IUser>();
 
-  @Output()
-  userLogin = new EventEmitter<IUser>();
+    selectedUser?: IUser;
+    users$: Observable<IUser[]>;
 
-  selectedUser?: IUser;
-  users$: Observable<IUser[]>;
+    constructor(private userService: UserService) {}
 
-  constructor(private userService: UserService) {}
-  
-  ngOnInit(): void {
-    this.users$ = this.userService.users$;
-  }
-
-  onLogin(): void {
-    if (!this.selectedUser) {
-      return;
+    ngOnInit(): void {
+        this.users$ = this.userService.users$;
     }
 
-    this.userLogin.next(this.selectedUser);
-  }
+    onLogin(): void {
+        if (!this.selectedUser) {
+            return;
+        }
+
+        this.userLogin.next(this.selectedUser);
+    }
 }

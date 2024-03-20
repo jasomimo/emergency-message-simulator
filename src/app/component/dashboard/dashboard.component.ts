@@ -8,30 +8,21 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { CommandDeviceComponent } from '@ems/device/component/command-device/command-device.component';
 import { AlertMessageBoxComponent } from '@ems/message/component/alert-message-box/alert-message-box.component';
 
-
-
 @Component({
-  selector: 'ems-dashboard',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FieldDeviceComponent, 
-    CommandDeviceComponent, 
-    ToolbarComponent,
-    AlertMessageBoxComponent
-  ],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+    selector: 'ems-dashboard',
+    standalone: true,
+    imports: [CommonModule, FieldDeviceComponent, CommandDeviceComponent, ToolbarComponent, AlertMessageBoxComponent],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
-  fieldDevices$: Observable<IDevice[]>;
-  commandDevice$: Observable<IDevice | undefined>;
+    fieldDevices$: Observable<IDevice[]>;
+    commandDevice$: Observable<IDevice | undefined>;
 
-  constructor(private deviceService: DeviceService) {}
-  
-  ngOnInit(): void {
-    this.fieldDevices$ = this.deviceService.getFieldDevices$();
-    this.commandDevice$ = this.deviceService.getCommandDevice$();
-  }
+    constructor(private deviceService: DeviceService) {}
 
+    ngOnInit(): void {
+        this.fieldDevices$ = this.deviceService.getFieldDevices$();
+        this.commandDevice$ = this.deviceService.getCommandDevice$();
+    }
 }

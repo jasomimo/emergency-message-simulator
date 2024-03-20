@@ -4,16 +4,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'ems-toolbar',
-  standalone: true,
-  imports: [
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-  ],
-  templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.scss'
+    selector: 'ems-toolbar',
+    standalone: true,
+    imports: [MatToolbarModule, MatIconModule, MatButtonModule],
+    templateUrl: './toolbar.component.html',
+    styleUrl: './toolbar.component.scss',
 })
-export class ToolbarComponent {
-
-}
+export class ToolbarComponent {}

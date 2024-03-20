@@ -34,22 +34,21 @@ $column-layout-width: variables.$device-width * 2 + 100px;
     }
 }
 
-
 .device-container {
     display: flex;
     flex-wrap: wrap;
-    
+
     overflow: auto;
 }
 
 .command-device {
     flex: 0 1 $command-container-width;
     min-width: variables.$min-screen-size;
-    
+
     justify-content: center;
 
     border-right: variables.$border;
-    
+
     overflow: auto;
 }
 
@@ -61,5 +60,3 @@ $column-layout-width: variables.$device-width * 2 + 100px;
 
     overflow: auto;
 }
-
-

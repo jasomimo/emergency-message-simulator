@@ -5,24 +5,21 @@ import { provideMock } from '@ems/shared/testing/utils';
 import { DeviceService } from '@ems/device/service/device.service';
 
 describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+    let component: DashboardComponent;
+    let fixture: ComponentFixture<DashboardComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [DashboardComponent],
-      providers: [
-        provideMock(DeviceService)
-      ]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(DashboardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [DashboardComponent],
+            providers: [provideMock(DeviceService)],
+        }).compileComponents();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+        fixture = TestBed.createComponent(DashboardComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

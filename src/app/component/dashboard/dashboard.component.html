@@ -1,9 +1,8 @@
 <ems-toolbar></ems-toolbar>
 
 <div class="device-wrapper">
-
     <div class="device-container command-device">
-        @if(commandDevice$ | async; as commandDevice) {
+        @if (commandDevice$ | async; as commandDevice) {
             <ems-command-device [device]="commandDevice"></ems-command-device>
             <ems-alert-message-box></ems-alert-message-box>
         } @else {
@@ -18,5 +17,4 @@
             <p>There are no field devices.</p>
         }
     </div>
-    
 </div>

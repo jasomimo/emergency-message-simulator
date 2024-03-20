@@ -17,74 +17,70 @@ import { DeviceUserListComponent } from '../device-user-list/device-user-list.co
 import { CommandKeywordsComponent } from '../command-keywords/command-keywords.component';
 
 @Component({
-  selector: 'ems-command-device',
-  standalone: true,
-  imports: [
-    CommonModule,
-    DeviceLoginComponent,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,
-    MatDividerModule,
-    DeviceMessageComponent,
-    DeviceMessageLogComponent,
-    DeviceUserListComponent,
-    CommandKeywordsComponent
-  ],
-  templateUrl: './command-device.component.html',
-  styleUrls: [
-    './command-device.component.scss',
-    '../../shared/_device.scss'
-  ]
+    selector: 'ems-command-device',
+    standalone: true,
+    imports: [
+        CommonModule,
+        DeviceLoginComponent,
+        MatButtonModule,
+        MatIconModule,
+        MatCardModule,
+        MatDividerModule,
+        DeviceMessageComponent,
+        DeviceMessageLogComponent,
+        DeviceUserListComponent,
+        CommandKeywordsComponent,
+    ],
+    templateUrl: './command-device.component.html',
+    styleUrls: ['./command-device.component.scss', '../../shared/_device.scss'],
 })
 export class CommandDeviceComponent implements IDeviceComponent, OnInit {
+    constructor(
+        private deviceLoginService: DeviceLoginService,
+        private messageService: MessageService,
+    ) {}
 
-  constructor(
-    private deviceLoginService: DeviceLoginService,
-    private messageService: MessageService
-  ) {}
+    @Input({ required: true })
+    device: IDevice;
 
-  @Input({required: true})
-  device: IDevice;
+    currentUser: IUser | null;
 
-  currentUser: IUser | null;
+    messages$: Observable<IMessage[]>;
 
-  messages$: Observable<IMessage[]>;
+    ngOnInit(): void {
+        if (this.device.type !== 'command') {
+            throw Error(`Was expecting command device, but got '${this.device.type}'.`);
+        }
 
-  ngOnInit(): void {
-    if (this.device.type !== 'command') {
-      throw Error(`Was expecting command device, but got '${this.device.type}'.`);
+        this.deviceLoginService
+            .getLoggedInUser$(this.device.name)
+            .pipe(take(1))
+            .subscribe((loggedUser) => (this.currentUser = loggedUser));
+
+        this.messages$ = this.messageService.getMessagesByDevice$(this.device.name);
     }
 
-    this.deviceLoginService
-      .getLoggedInUser$(this.device.name)
-      .pipe(take(1))
-      .subscribe(loggedUser => this.currentUser = loggedUser);
-    
-    this.messages$ = this.messageService.getMessagesByDevice$(this.device.name);
-  }
+    onUserLogin(user: IUser): void {
+        this.deviceLoginService.login(this.device.name, user.name);
 
-  onUserLogin(user: IUser): void {
-    this.deviceLoginService.login(this.device.name, user.name);
-
-    this.currentUser = user;
-  }
-
-  onUserLogout(): void {
-    this.deviceLoginService.logout(this.device.name);
-    this.currentUser = null;
-  }
-
-  onSendMessage(message: string): void {
-    if (!this.currentUser) {
-      throw Error('Cannot send a message, there is not user logged in.');
+        this.currentUser = user;
     }
 
-    this.messageService.addMessage({
-      deviceName: this.device.name,
-      message,
-      timestamp: Date.now(),
-      userName: this.currentUser.name
-    });
-  }
+    onUserLogout(): void {
+        this.deviceLoginService.logout(this.device.name);
+        this.currentUser = null;
+    }
+
+    onSendMessage(message: string): void {
+        if (!this.currentUser) {
+            throw Error('Cannot send a message, there is not user logged in.');
+        }
+
+        this.messageService.addMessage({
+            deviceName: this.device.name,
+            message,
+            timestamp: Date.now(),
+            userName: this.currentUser.name,
+        });
+    }
 }

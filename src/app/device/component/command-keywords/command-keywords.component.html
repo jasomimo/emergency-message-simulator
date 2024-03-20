@@ -1,20 +1,13 @@
 <span class="section-title">Keywords</span>
 
 <mat-form-field>
-
     <mat-label>Command keywords</mat-label>
 
-    <textarea 
-        matInput 
+    <textarea
+        matInput
         [(ngModel)]="keywordsValue"
         placeholder="Add keywords separated by comma, e.g.: emergency, forest fire, flood"
     ></textarea>
-
 </mat-form-field>
 
-<button 
-    mat-flat-button 
-    (click)="onUpdateKeywords()"
->
-    Update
-</button>
+<button mat-flat-button (click)="onUpdateKeywords()">Update</button>

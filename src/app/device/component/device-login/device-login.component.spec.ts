@@ -5,24 +5,21 @@ import { provideMock } from '@ems/shared/testing/utils';
 import { UserService } from '@ems/user/service/user.service';
 
 describe('DeviceLoginComponent', () => {
-  let component: DeviceLoginComponent;
-  let fixture: ComponentFixture<DeviceLoginComponent>;
+    let component: DeviceLoginComponent;
+    let fixture: ComponentFixture<DeviceLoginComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [DeviceLoginComponent],
-      providers: [
-        provideMock(UserService)
-      ]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(DeviceLoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [DeviceLoginComponent],
+            providers: [provideMock(UserService)],
+        }).compileComponents();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+        fixture = TestBed.createComponent(DeviceLoginComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

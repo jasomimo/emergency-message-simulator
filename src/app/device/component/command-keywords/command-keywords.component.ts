@@ -7,40 +7,30 @@ import { MessageService } from '@ems/message/service/message.service';
 import { take } from 'rxjs';
 
 @Component({
-  selector: 'ems-command-keywords',
-  standalone: true,
-  imports: [
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-  ],
-  templateUrl: './command-keywords.component.html',
-  styleUrl: './command-keywords.component.scss'
+    selector: 'ems-command-keywords',
+    standalone: true,
+    imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+    templateUrl: './command-keywords.component.html',
+    styleUrl: './command-keywords.component.scss',
 })
 export class CommandKeywordsComponent implements OnInit {
-  constructor(private messageService: MessageService) {}
+    constructor(private messageService: MessageService) {}
 
-  ngOnInit(): void {
-    this.messageService
-      .keywords$
-      .pipe(take(1))
-      .subscribe(keywords => {
-        this.keywordsValue = keywords.join(', ');
-      });
-  }
-
-  keywordsValue: string;
-
-  onUpdateKeywords(): void {
-    if (!this.keywordsValue) {
-      this.keywordsValue = '';
+    ngOnInit(): void {
+        this.messageService.keywords$.pipe(take(1)).subscribe((keywords) => {
+            this.keywordsValue = keywords.join(', ');
+        });
     }
-    
-    const keywords = this.keywordsValue
-      .split(',')
-      .map(keyword => keyword.trim());
 
-    this.messageService.updateKeywords(keywords);
-  }
+    keywordsValue: string;
+
+    onUpdateKeywords(): void {
+        if (!this.keywordsValue) {
+            this.keywordsValue = '';
+        }
+
+        const keywords = this.keywordsValue.split(',').map((keyword) => keyword.trim());
+
+        this.messageService.updateKeywords(keywords);
+    }
 }

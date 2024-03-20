@@ -5,45 +5,42 @@ import { IMessage } from '@ems/message/model/message.model';
 import { Component, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'ems-mock-host',
-  standalone: true,
-  imports: [
-    MessageComponent
-  ],
-  template: `<ems-message [message]="mockMessage"></ems-message>`
+    selector: 'ems-mock-host',
+    standalone: true,
+    imports: [MessageComponent],
+    template: `<ems-message [message]="mockMessage"></ems-message>`,
 })
 export class MockHostComponent {
-  mockMessage: IMessage = {
-    deviceName: 'mock device',
-    message: 'mock message',
-    timestamp: 123,
-    userName: 'mock suer'
-  };
+    mockMessage: IMessage = {
+        deviceName: 'mock device',
+        message: 'mock message',
+        timestamp: 123,
+        userName: 'mock suer',
+    };
 
-  @ViewChild(MessageComponent)
-  component: MessageComponent;
+    @ViewChild(MessageComponent)
+    component: MessageComponent;
 }
 
 describe('MessageComponent', () => {
-  let mockHostComponent: MockHostComponent;
-  let mockHostFixture: ComponentFixture<MockHostComponent>;
-  
-  let component: MessageComponent;
+    let mockHostComponent: MockHostComponent;
+    let mockHostFixture: ComponentFixture<MockHostComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MockHostComponent, MessageComponent]
-    })
-    .compileComponents();
-    
-    mockHostFixture = TestBed.createComponent(MockHostComponent);
-    mockHostComponent = mockHostFixture.componentInstance;
-    mockHostFixture.detectChanges();
+    let component: MessageComponent;
 
-    component = mockHostComponent.component;
-  });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [MockHostComponent, MessageComponent],
+        }).compileComponents();
 
-  it('should create', () => {
-    expect(mockHostComponent).toBeTruthy();
-  });
+        mockHostFixture = TestBed.createComponent(MockHostComponent);
+        mockHostComponent = mockHostFixture.componentInstance;
+        mockHostFixture.detectChanges();
+
+        component = mockHostComponent.component;
+    });
+
+    it('should create', () => {
+        expect(mockHostComponent).toBeTruthy();
+    });
 });

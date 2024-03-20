@@ -3,23 +3,20 @@ import { IAlertMessage } from '@ems/message/model/message.model';
 import { MessageComponent } from '../message/message.component';
 
 @Component({
-  selector: 'ems-alert-message',
-  standalone: true,
-  imports: [
-    MessageComponent
-  ],
-  templateUrl: './alert-message.component.html',
-  styleUrl: './alert-message.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'ems-alert-message',
+    standalone: true,
+    imports: [MessageComponent],
+    templateUrl: './alert-message.component.html',
+    styleUrl: './alert-message.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertMessageComponent implements OnInit {
+    @Input({ required: true })
+    alertMessage: IAlertMessage;
 
-  @Input({ required: true })
-  alertMessage: IAlertMessage;
+    keywords: string;
 
-  keywords: string;
-
-  ngOnInit(): void {
-    this.keywords = this.alertMessage.keywords.join(', ');
-  }
+    ngOnInit(): void {
+        this.keywords = this.alertMessage.keywords.join(', ');
+    }
 }

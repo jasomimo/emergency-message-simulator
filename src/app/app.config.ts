@@ -9,11 +9,12 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 export const STORAGE = new InjectionToken<Storage>('persistentStorageToken');
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    {
-      provide: STORAGE,
-      useValue: window.localStorage
-    }, provideAnimationsAsync()
-  ]
+    providers: [
+        provideRouter(routes),
+        {
+            provide: STORAGE,
+            useValue: window.localStorage,
+        },
+        provideAnimationsAsync(),
+    ],
 };

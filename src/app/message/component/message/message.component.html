@@ -1,4 +1,2 @@
-<strong>
-    {{ message.userName }}{{'@'}}{{ message.deviceName }}{{'@'}}{{ message.timestamp | utcDate }}:
-</strong>
+<strong> {{ message.userName }}{{ '@' }}{{ message.deviceName }}{{ '@' }}{{ message.timestamp | utcDate }}: </strong>
 {{ message.message }}

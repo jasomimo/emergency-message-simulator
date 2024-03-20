@@ -10,13 +10,8 @@
                 }
             </mat-select>
         </mat-form-field>
-        
-        <button 
-            mat-flat-button 
-            color="primary"
-            (click)="onLogin()"
-            [disabled]="!selectedUser"
-        >
+
+        <button mat-flat-button color="primary" (click)="onLogin()" [disabled]="!selectedUser">
             Login
             <mat-icon>login</mat-icon>
         </button>
