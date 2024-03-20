@@ -16,8 +16,8 @@ import { take } from 'rxjs';
 })
 export class CommandKeywordsComponent implements OnInit {
     constructor(
-      private messageService: MessageService,
-      private snackBar: MatSnackBar
+        private messageService: MessageService,
+        private snackBar: MatSnackBar,
     ) {}
 
     ngOnInit(): void {

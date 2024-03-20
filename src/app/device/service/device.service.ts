@@ -40,7 +40,7 @@ export class DeviceService implements IDeviceService {
     }
 
     private addCommandDeviceIfNotExists(initialDevices: IDevice[]): void {
-        let commandDevice: IDevice | undefined = initialDevices.find(d => d.type === 'command');
+        let commandDevice: IDevice | undefined = initialDevices.find((d) => d.type === 'command');
 
         if (commandDevice) {
             return;
@@ -48,7 +48,7 @@ export class DeviceService implements IDeviceService {
 
         commandDevice = {
             name: 'Operator',
-            type: 'command'
+            type: 'command',
         };
 
         this.deviceStorageService.createDevice(commandDevice);

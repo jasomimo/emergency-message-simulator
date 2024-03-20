@@ -27,21 +27,13 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     constructor(
         private deviceService: DeviceService,
         private userService: UserService,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
     ) {}
 
     ngOnInit(): void {
-        this.subscription.add(
-            this.userService
-                .users$
-                .subscribe(users => this.users = users)
-        );
+        this.subscription.add(this.userService.users$.subscribe((users) => (this.users = users)));
 
-        this.subscription.add(
-            this.deviceService
-                .devices$
-                .subscribe(devices => this.devices = devices)
-        );
+        this.subscription.add(this.deviceService.devices$.subscribe((devices) => (this.devices = devices)));
     }
 
     ngOnDestroy(): void {
@@ -69,9 +61,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
         do {
             uniqueName = uniqueNamesGenerator({ dictionaries: [starWars] });
-            userExists =  this.users.find(u => u.name === uniqueName);
-
-        } while(userExists)
+            userExists = this.users.find((u) => u.name === uniqueName);
+        } while (userExists);
 
         return uniqueName;
     }
@@ -82,9 +73,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
         do {
             deviceName = uniqueNamesGenerator({ dictionaries: [countries] });
-            deviceExists =  this.devices.find(d => d.name === deviceName);
-
-        } while(deviceExists)
+            deviceExists = this.devices.find((d) => d.name === deviceName);
+        } while (deviceExists);
 
         return deviceName;
     }
