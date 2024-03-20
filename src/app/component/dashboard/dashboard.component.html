@@ -1,17 +1,22 @@
 <ems-toolbar></ems-toolbar>
 
-<div class="devices-container">
-    @for (fieldDevice of fieldDevices$ | async; track fieldDevice.name) {
-        <ems-field-device [device]="fieldDevice"></ems-field-device>
-    } @empty {
-        <p>There are no field devices.</p>
-    }
-</div>
-<div class="devices-container border-top">
-    @if(commandDevice$ | async; as commandDevice) {
-        <ems-command-device [device]="commandDevice"></ems-command-device>
-        <ems-alert-message-box></ems-alert-message-box>
-    } @else {
-        <p>There is no command device.</p>
-    }
+<div class="device-wrapper">
+
+    <div class="device-container command-device">
+        @if(commandDevice$ | async; as commandDevice) {
+            <ems-command-device [device]="commandDevice"></ems-command-device>
+            <ems-alert-message-box></ems-alert-message-box>
+        } @else {
+            <p>There is no command device.</p>
+        }
+    </div>
+
+    <div class="device-container field-device">
+        @for (fieldDevice of fieldDevices$ | async; track fieldDevice.name) {
+            <ems-field-device [device]="fieldDevice"></ems-field-device>
+        } @empty {
+            <p>There are no field devices.</p>
+        }
+    </div>
+    
 </div>
